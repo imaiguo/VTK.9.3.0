@@ -3293,7 +3293,7 @@ Status SystemTools::ReadSymlink(std::string const& newName,
     size_t destLen;
     substituteNameData = GetAppExecLink(data, destLen);
     if (substituteNameData == nullptr || destLen == 0) {
-      return Status::Windows(ERROR_SYMLINK_NOT_SUPPORTED);
+      return Status::Windows(ERROR_REPARSE_TAG_MISMATCH);
     }
     substituteNameLength = static_cast<USHORT>(destLen);
   } else {

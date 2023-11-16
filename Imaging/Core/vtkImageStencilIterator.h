@@ -117,6 +117,26 @@ protected:
   DType* SpanEndPointer; // end of current span
 };
 
+template<>
+inline vtkImageStencilIterator<short>::vtkImageStencilIterator(vtkImageData* image, vtkImageStencilData* stencil,
+  const int extent[6], vtkAlgorithm* algorithm, int threadId)
+  : vtkImagePointDataIterator(image, extent, stencil, algorithm, threadId)
+{
+  this->BasePointer =
+    static_cast<short*>(vtkImagePointDataIterator::GetVoidPointer(image, 0, &this->Increment));
+  this->UpdatePointer();
+}
+
+template<>
+inline vtkImageStencilIterator<unsigned short>::vtkImageStencilIterator(vtkImageData* image, vtkImageStencilData* stencil,
+  const int extent[6], vtkAlgorithm* algorithm, int threadId)
+  : vtkImagePointDataIterator(image, extent, stencil, algorithm, threadId)
+{
+  this->BasePointer =
+    static_cast<unsigned short*>(vtkImagePointDataIterator::GetVoidPointer(image, 0, &this->Increment));
+  this->UpdatePointer();
+}
+
 #ifndef vtkImageStencilIterator_cxx
 #ifdef _MSC_VER
 #pragma warning(push)

@@ -6,6 +6,8 @@ if (POLICY CMP0127)
   cmake_policy(SET CMP0127 NEW) # cmake_dependent_option changes
 endif ()
 
+set(CMAKE_PREFIX_PATH $ENV{QT_PATH})
+
 set(vtk_cmake_dir "${VTK_SOURCE_DIR}/CMake")
 list(INSERT CMAKE_MODULE_PATH 0 "${vtk_cmake_dir}")
 
