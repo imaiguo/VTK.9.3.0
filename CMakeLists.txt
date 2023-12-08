@@ -118,6 +118,9 @@ set(CMAKE_CXX_VISIBILITY_PRESET "hidden")
 set(CMAKE_VISIBILITY_INLINES_HIDDEN 1)
 set(CMAKE_POSITION_INDEPENDENT_CODE TRUE)
 
+set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -O3  -Wall")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O3  -Wall")
+
 #-----------------------------------------------------------------------------
 # Add the Remote Subdirectory
 if (VTK_ENABLE_REMOTE_MODULES)

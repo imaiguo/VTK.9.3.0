@@ -284,6 +284,339 @@ private:
   friend class vtkGenericDataArray<vtkAOSDataArrayTemplate<ValueTypeT>, ValueTypeT>;
 };
 
+// SetValue
+template<>
+inline void vtkAOSDataArrayTemplate<unsigned char>::SetValue(vtkIdType valueIdx, ValueType value)
+  VTK_EXPECTS(0 <= valueIdx && valueIdx < GetNumberOfValues())
+{
+  this->Buffer->GetBuffer()[valueIdx] = value;
+}
+
+template<>
+inline void vtkAOSDataArrayTemplate<int>::SetValue(vtkIdType valueIdx, ValueType value)
+  VTK_EXPECTS(0 <= valueIdx && valueIdx < GetNumberOfValues())
+{
+  this->Buffer->GetBuffer()[valueIdx] = value;
+}
+
+template<>
+inline void vtkAOSDataArrayTemplate<unsigned int>::SetValue(vtkIdType valueIdx, ValueType value)
+  VTK_EXPECTS(0 <= valueIdx && valueIdx < GetNumberOfValues())
+{
+  this->Buffer->GetBuffer()[valueIdx] = value;
+}
+
+template<>
+inline void vtkAOSDataArrayTemplate<unsigned short>::SetValue(vtkIdType valueIdx, ValueType value)
+  VTK_EXPECTS(0 <= valueIdx && valueIdx < GetNumberOfValues())
+{
+  this->Buffer->GetBuffer()[valueIdx] = value;
+}
+
+template<>
+inline void vtkAOSDataArrayTemplate<long>::SetValue(vtkIdType valueIdx, ValueType value)
+  VTK_EXPECTS(0 <= valueIdx && valueIdx < GetNumberOfValues())
+{
+  this->Buffer->GetBuffer()[valueIdx] = value;
+}
+
+template<>
+inline void vtkAOSDataArrayTemplate<long long>::SetValue(vtkIdType valueIdx, ValueType value)
+  VTK_EXPECTS(0 <= valueIdx && valueIdx < GetNumberOfValues())
+{
+  this->Buffer->GetBuffer()[valueIdx] = value;
+}
+
+template<>
+inline void vtkAOSDataArrayTemplate<double>::SetValue(vtkIdType valueIdx, ValueType value)
+  VTK_EXPECTS(0 <= valueIdx && valueIdx < GetNumberOfValues())
+{
+  this->Buffer->GetBuffer()[valueIdx] = value;
+}
+
+// GetValue
+template<>
+inline unsigned char vtkAOSDataArrayTemplate<unsigned char>::GetValue(vtkIdType valueIdx) const
+  VTK_EXPECTS(0 <= valueIdx && valueIdx < GetNumberOfValues())
+{
+  return this->Buffer->GetBuffer()[valueIdx];
+}
+
+template<>
+inline int vtkAOSDataArrayTemplate<int>::GetValue(vtkIdType valueIdx) const
+  VTK_EXPECTS(0 <= valueIdx && valueIdx < GetNumberOfValues())
+{
+  return this->Buffer->GetBuffer()[valueIdx];
+}
+
+template<>
+inline unsigned int vtkAOSDataArrayTemplate<unsigned int>::GetValue(vtkIdType valueIdx) const
+  VTK_EXPECTS(0 <= valueIdx && valueIdx < GetNumberOfValues())
+{
+  return this->Buffer->GetBuffer()[valueIdx];
+}
+
+template<>
+inline unsigned short vtkAOSDataArrayTemplate<unsigned short>::GetValue(vtkIdType valueIdx) const
+  VTK_EXPECTS(0 <= valueIdx && valueIdx < GetNumberOfValues())
+{
+  return this->Buffer->GetBuffer()[valueIdx];
+}
+
+template<>
+inline double vtkAOSDataArrayTemplate<double>::GetValue(vtkIdType valueIdx) const
+  VTK_EXPECTS(0 <= valueIdx && valueIdx < GetNumberOfValues())
+{
+  return this->Buffer->GetBuffer()[valueIdx];
+}
+
+template<>
+inline long long vtkAOSDataArrayTemplate<long long>::GetValue(vtkIdType valueIdx) const
+  VTK_EXPECTS(0 <= valueIdx && valueIdx < GetNumberOfValues())
+{
+  return this->Buffer->GetBuffer()[valueIdx];
+}
+
+template<>
+inline unsigned long long vtkAOSDataArrayTemplate<unsigned long long>::GetValue(vtkIdType valueIdx) const
+  VTK_EXPECTS(0 <= valueIdx && valueIdx < GetNumberOfValues())
+{
+  return this->Buffer->GetBuffer()[valueIdx];
+}
+
+template<>
+inline unsigned long vtkAOSDataArrayTemplate<unsigned long>::GetValue(vtkIdType valueIdx) const
+  VTK_EXPECTS(0 <= valueIdx && valueIdx < GetNumberOfValues())
+{
+  return this->Buffer->GetBuffer()[valueIdx];
+}
+
+// SetTypedComponent
+template<>
+inline void vtkAOSDataArrayTemplate<int>::SetTypedComponent(vtkIdType tupleIdx, int comp, ValueType value) VTK_EXPECTS(0 <= tupleIdx &&
+  tupleIdx < GetNumberOfTuples()) VTK_EXPECTS(0 <= comp && comp < GetNumberOfComponents())
+{
+  const vtkIdType valueIdx = tupleIdx * this->NumberOfComponents + comp;
+  this->SetValue(valueIdx, value);
+}
+
+template<>
+inline void vtkAOSDataArrayTemplate<unsigned int>::SetTypedComponent(vtkIdType tupleIdx, int comp, ValueType value) VTK_EXPECTS(0 <= tupleIdx &&
+  tupleIdx < GetNumberOfTuples()) VTK_EXPECTS(0 <= comp && comp < GetNumberOfComponents())
+{
+  const vtkIdType valueIdx = tupleIdx * this->NumberOfComponents + comp;
+  this->SetValue(valueIdx, value);
+}
+
+template<>
+inline void vtkAOSDataArrayTemplate<long>::SetTypedComponent(vtkIdType tupleIdx, int comp, ValueType value) VTK_EXPECTS(0 <= tupleIdx &&
+  tupleIdx < GetNumberOfTuples()) VTK_EXPECTS(0 <= comp && comp < GetNumberOfComponents())
+{
+  const vtkIdType valueIdx = tupleIdx * this->NumberOfComponents + comp;
+  this->SetValue(valueIdx, value);
+}
+
+template<>
+inline void vtkAOSDataArrayTemplate<long long>::SetTypedComponent(vtkIdType tupleIdx, int comp, ValueType value) VTK_EXPECTS(0 <= tupleIdx &&
+  tupleIdx < GetNumberOfTuples()) VTK_EXPECTS(0 <= comp && comp < GetNumberOfComponents())
+{
+  const vtkIdType valueIdx = tupleIdx * this->NumberOfComponents + comp;
+  this->SetValue(valueIdx, value);
+}
+
+// GetTypedTuple
+template<>
+inline void vtkAOSDataArrayTemplate<long long>:: GetTypedTuple(vtkIdType tupleIdx, ValueType* tuple) const
+  VTK_EXPECTS(0 <= tupleIdx && tupleIdx < GetNumberOfTuples())
+{
+  const vtkIdType valueIdx = tupleIdx * this->NumberOfComponents;
+  std::copy(this->Buffer->GetBuffer() + valueIdx,
+    this->Buffer->GetBuffer() + valueIdx + this->NumberOfComponents, tuple);
+}
+
+// SetTypedTuple
+template<>
+inline void vtkAOSDataArrayTemplate<long long>:: SetTypedTuple(vtkIdType tupleIdx, const ValueType* tuple)
+  VTK_EXPECTS(0 <= tupleIdx && tupleIdx < GetNumberOfTuples())
+{
+  const vtkIdType valueIdx = tupleIdx * this->NumberOfComponents;
+  std::copy(tuple, tuple + this->NumberOfComponents, this->Buffer->GetBuffer() + valueIdx);
+}
+
+template<>
+inline void vtkAOSDataArrayTemplate<char>:: SetTypedTuple(vtkIdType tupleIdx, const ValueType* tuple)
+  VTK_EXPECTS(0 <= tupleIdx && tupleIdx < GetNumberOfTuples())
+{
+  const vtkIdType valueIdx = tupleIdx * this->NumberOfComponents;
+  std::copy(tuple, tuple + this->NumberOfComponents, this->Buffer->GetBuffer() + valueIdx);
+}
+
+template<>
+inline void vtkAOSDataArrayTemplate<unsigned short>:: SetTypedTuple(vtkIdType tupleIdx, const ValueType* tuple)
+  VTK_EXPECTS(0 <= tupleIdx && tupleIdx < GetNumberOfTuples())
+{
+  const vtkIdType valueIdx = tupleIdx * this->NumberOfComponents;
+  std::copy(tuple, tuple + this->NumberOfComponents, this->Buffer->GetBuffer() + valueIdx);
+}
+
+template<>
+inline void vtkAOSDataArrayTemplate<int>:: SetTypedTuple(vtkIdType tupleIdx, const ValueType* tuple)
+  VTK_EXPECTS(0 <= tupleIdx && tupleIdx < GetNumberOfTuples())
+{
+  const vtkIdType valueIdx = tupleIdx * this->NumberOfComponents;
+  std::copy(tuple, tuple + this->NumberOfComponents, this->Buffer->GetBuffer() + valueIdx);
+}
+
+template<>
+inline void vtkAOSDataArrayTemplate<unsigned int>:: SetTypedTuple(vtkIdType tupleIdx, const ValueType* tuple)
+  VTK_EXPECTS(0 <= tupleIdx && tupleIdx < GetNumberOfTuples())
+{
+  const vtkIdType valueIdx = tupleIdx * this->NumberOfComponents;
+  std::copy(tuple, tuple + this->NumberOfComponents, this->Buffer->GetBuffer() + valueIdx);
+}
+
+template<>
+inline void vtkAOSDataArrayTemplate<double>:: SetTypedTuple(vtkIdType tupleIdx, const ValueType* tuple)
+  VTK_EXPECTS(0 <= tupleIdx && tupleIdx < GetNumberOfTuples())
+{
+  const vtkIdType valueIdx = tupleIdx * this->NumberOfComponents;
+  std::copy(tuple, tuple + this->NumberOfComponents, this->Buffer->GetBuffer() + valueIdx);
+}
+
+template<>
+inline void vtkAOSDataArrayTemplate<float>:: SetTypedTuple(vtkIdType tupleIdx, const ValueType* tuple)
+  VTK_EXPECTS(0 <= tupleIdx && tupleIdx < GetNumberOfTuples())
+{
+  const vtkIdType valueIdx = tupleIdx * this->NumberOfComponents;
+  std::copy(tuple, tuple + this->NumberOfComponents, this->Buffer->GetBuffer() + valueIdx);
+}
+
+template<>
+inline void vtkAOSDataArrayTemplate<long>:: SetTypedTuple(vtkIdType tupleIdx, const ValueType* tuple)
+  VTK_EXPECTS(0 <= tupleIdx && tupleIdx < GetNumberOfTuples())
+{
+  const vtkIdType valueIdx = tupleIdx * this->NumberOfComponents;
+  std::copy(tuple, tuple + this->NumberOfComponents, this->Buffer->GetBuffer() + valueIdx);
+}
+
+template<>
+inline void vtkAOSDataArrayTemplate<unsigned long>:: SetTypedTuple(vtkIdType tupleIdx, const ValueType* tuple)
+  VTK_EXPECTS(0 <= tupleIdx && tupleIdx < GetNumberOfTuples())
+{
+  const vtkIdType valueIdx = tupleIdx * this->NumberOfComponents;
+  std::copy(tuple, tuple + this->NumberOfComponents, this->Buffer->GetBuffer() + valueIdx);
+}
+
+template<>
+inline void vtkAOSDataArrayTemplate<unsigned long long>:: SetTypedTuple(vtkIdType tupleIdx, const ValueType* tuple)
+  VTK_EXPECTS(0 <= tupleIdx && tupleIdx < GetNumberOfTuples())
+{
+  const vtkIdType valueIdx = tupleIdx * this->NumberOfComponents;
+  std::copy(tuple, tuple + this->NumberOfComponents, this->Buffer->GetBuffer() + valueIdx);
+}
+
+template<>
+inline void vtkAOSDataArrayTemplate<short>:: SetTypedTuple(vtkIdType tupleIdx, const ValueType* tuple)
+  VTK_EXPECTS(0 <= tupleIdx && tupleIdx < GetNumberOfTuples())
+{
+  const vtkIdType valueIdx = tupleIdx * this->NumberOfComponents;
+  std::copy(tuple, tuple + this->NumberOfComponents, this->Buffer->GetBuffer() + valueIdx);
+}
+
+template<>
+inline void vtkAOSDataArrayTemplate<signed char>:: SetTypedTuple(vtkIdType tupleIdx, const ValueType* tuple)
+  VTK_EXPECTS(0 <= tupleIdx && tupleIdx < GetNumberOfTuples())
+{
+  const vtkIdType valueIdx = tupleIdx * this->NumberOfComponents;
+  std::copy(tuple, tuple + this->NumberOfComponents, this->Buffer->GetBuffer() + valueIdx);
+}
+
+template<>
+inline void vtkAOSDataArrayTemplate<unsigned char>:: SetTypedTuple(vtkIdType tupleIdx, const ValueType* tuple)
+  VTK_EXPECTS(0 <= tupleIdx && tupleIdx < GetNumberOfTuples())
+{
+  const vtkIdType valueIdx = tupleIdx * this->NumberOfComponents;
+  std::copy(tuple, tuple + this->NumberOfComponents, this->Buffer->GetBuffer() + valueIdx);
+}
+
+// GetTypedComponent
+template<>
+inline char vtkAOSDataArrayTemplate<char>::GetTypedComponent(vtkIdType tupleIdx, int comp) const VTK_EXPECTS(0 <= tupleIdx &&
+  tupleIdx < GetNumberOfTuples()) VTK_EXPECTS(0 <= comp && comp < GetNumberOfComponents())
+{
+  return this->Buffer->GetBuffer()[this->NumberOfComponents * tupleIdx + comp];
+}
+
+template<>
+inline double vtkAOSDataArrayTemplate<double>::GetTypedComponent(vtkIdType tupleIdx, int comp) const VTK_EXPECTS(0 <= tupleIdx &&
+  tupleIdx < GetNumberOfTuples()) VTK_EXPECTS(0 <= comp && comp < GetNumberOfComponents())
+{
+  return this->Buffer->GetBuffer()[this->NumberOfComponents * tupleIdx + comp];
+}
+
+template<>
+inline float vtkAOSDataArrayTemplate<float>::GetTypedComponent(vtkIdType tupleIdx, int comp) const VTK_EXPECTS(0 <= tupleIdx &&
+  tupleIdx < GetNumberOfTuples()) VTK_EXPECTS(0 <= comp && comp < GetNumberOfComponents())
+{
+  return this->Buffer->GetBuffer()[this->NumberOfComponents * tupleIdx + comp];
+}
+
+template<>
+inline int vtkAOSDataArrayTemplate<int>::GetTypedComponent(vtkIdType tupleIdx, int comp) const VTK_EXPECTS(0 <= tupleIdx &&
+  tupleIdx < GetNumberOfTuples()) VTK_EXPECTS(0 <= comp && comp < GetNumberOfComponents())
+{
+  return this->Buffer->GetBuffer()[this->NumberOfComponents * tupleIdx + comp];
+}
+
+template<>
+inline unsigned int vtkAOSDataArrayTemplate<unsigned int>::GetTypedComponent(vtkIdType tupleIdx, int comp) const VTK_EXPECTS(0 <= tupleIdx &&
+  tupleIdx < GetNumberOfTuples()) VTK_EXPECTS(0 <= comp && comp < GetNumberOfComponents())
+{
+  return this->Buffer->GetBuffer()[this->NumberOfComponents * tupleIdx + comp];
+}
+
+template<>
+inline long vtkAOSDataArrayTemplate<long>::GetTypedComponent(vtkIdType tupleIdx, int comp) const VTK_EXPECTS(0 <= tupleIdx &&
+  tupleIdx < GetNumberOfTuples()) VTK_EXPECTS(0 <= comp && comp < GetNumberOfComponents())
+{
+  return this->Buffer->GetBuffer()[this->NumberOfComponents * tupleIdx + comp];
+}
+
+template<>
+inline unsigned long vtkAOSDataArrayTemplate<unsigned long>::GetTypedComponent(vtkIdType tupleIdx, int comp) const VTK_EXPECTS(0 <= tupleIdx &&
+  tupleIdx < GetNumberOfTuples()) VTK_EXPECTS(0 <= comp && comp < GetNumberOfComponents())
+{
+  return this->Buffer->GetBuffer()[this->NumberOfComponents * tupleIdx + comp];
+}
+
+template<>
+inline long long vtkAOSDataArrayTemplate<long long>::GetTypedComponent(vtkIdType tupleIdx, int comp) const VTK_EXPECTS(0 <= tupleIdx &&
+  tupleIdx < GetNumberOfTuples()) VTK_EXPECTS(0 <= comp && comp < GetNumberOfComponents())
+{
+  return this->Buffer->GetBuffer()[this->NumberOfComponents * tupleIdx + comp];
+}
+
+template<>
+inline unsigned long long vtkAOSDataArrayTemplate<unsigned long long>::GetTypedComponent(vtkIdType tupleIdx, int comp) const VTK_EXPECTS(0 <= tupleIdx &&
+  tupleIdx < GetNumberOfTuples()) VTK_EXPECTS(0 <= comp && comp < GetNumberOfComponents())
+{
+  return this->Buffer->GetBuffer()[this->NumberOfComponents * tupleIdx + comp];
+}
+
+template<>
+inline short vtkAOSDataArrayTemplate<short>::GetTypedComponent(vtkIdType tupleIdx, int comp) const VTK_EXPECTS(0 <= tupleIdx &&
+  tupleIdx < GetNumberOfTuples()) VTK_EXPECTS(0 <= comp && comp < GetNumberOfComponents())
+{
+  return this->Buffer->GetBuffer()[this->NumberOfComponents * tupleIdx + comp];
+}
+
+template<>
+inline signed char vtkAOSDataArrayTemplate<signed char>::GetTypedComponent(vtkIdType tupleIdx, int comp) const VTK_EXPECTS(0 <= tupleIdx &&
+  tupleIdx < GetNumberOfTuples()) VTK_EXPECTS(0 <= comp && comp < GetNumberOfComponents())
+{
+  return this->Buffer->GetBuffer()[this->NumberOfComponents * tupleIdx + comp];
+}
+
 // Declare vtkArrayDownCast implementations for AoS containers:
 vtkArrayDownCast_TemplateFastCastMacro(vtkAOSDataArrayTemplate);
 

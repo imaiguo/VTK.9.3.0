@@ -105,6 +105,87 @@ private:
   vtkAbstractArray* Array;
 };
 
+// GetValue
+template<>
+inline vtkStdString& vtkArrayIteratorTemplate<vtkStdString>::GetValue(vtkIdType id) { return this->Pointer[id]; }
+
+template<>
+inline double& vtkArrayIteratorTemplate<double>::GetValue(vtkIdType id) { return this->Pointer[id]; }
+
+template<>
+inline float& vtkArrayIteratorTemplate<float>::GetValue(vtkIdType id) { return this->Pointer[id]; }
+
+template<>
+inline long long& vtkArrayIteratorTemplate<long long>::GetValue(vtkIdType id) { return this->Pointer[id]; }
+
+template<>
+inline unsigned long long& vtkArrayIteratorTemplate<unsigned long long>::GetValue(vtkIdType id) { return this->Pointer[id]; }
+
+template<>
+inline long& vtkArrayIteratorTemplate<long>::GetValue(vtkIdType id) { return this->Pointer[id]; }
+
+template<>
+inline unsigned long& vtkArrayIteratorTemplate<unsigned long>::GetValue(vtkIdType id) { return this->Pointer[id]; }
+
+template<>
+inline int& vtkArrayIteratorTemplate<int>::GetValue(vtkIdType id) { return this->Pointer[id]; }
+
+template<>
+inline unsigned int& vtkArrayIteratorTemplate<unsigned int>::GetValue(vtkIdType id) { return this->Pointer[id]; }
+
+template<>
+inline short& vtkArrayIteratorTemplate<short>::GetValue(vtkIdType id) { return this->Pointer[id]; }
+
+template<>
+inline unsigned short& vtkArrayIteratorTemplate<unsigned short>::GetValue(vtkIdType id) { return this->Pointer[id]; }
+
+template<>
+inline unsigned char& vtkArrayIteratorTemplate<unsigned char>::GetValue(vtkIdType id) { return this->Pointer[id]; }
+
+template<>
+inline char& vtkArrayIteratorTemplate<char>::GetValue(vtkIdType id) { return this->Pointer[id]; }
+
+// GetArray
+
+template<>
+inline vtkAbstractArray* vtkArrayIteratorTemplate<int>::GetArray() { return this->Array; }
+
+template<>
+inline vtkAbstractArray* vtkArrayIteratorTemplate<unsigned int>::GetArray() { return this->Array; }
+
+template<>
+inline vtkAbstractArray* vtkArrayIteratorTemplate<short>::GetArray() { return this->Array; }
+
+template<>
+inline vtkAbstractArray* vtkArrayIteratorTemplate<unsigned short>::GetArray() { return this->Array; }
+
+template<>
+inline vtkAbstractArray* vtkArrayIteratorTemplate<char>::GetArray() { return this->Array; }
+
+template<>
+inline vtkAbstractArray* vtkArrayIteratorTemplate<unsigned char>::GetArray() { return this->Array; }
+
+template<>
+inline vtkAbstractArray* vtkArrayIteratorTemplate<signed char>::GetArray() { return this->Array; }
+
+template<>
+inline vtkAbstractArray* vtkArrayIteratorTemplate<double>::GetArray() { return this->Array; }
+
+template<>
+inline vtkAbstractArray* vtkArrayIteratorTemplate<float>::GetArray() { return this->Array; }
+
+template<>
+inline vtkAbstractArray* vtkArrayIteratorTemplate<long>::GetArray() { return this->Array; }
+
+template<>
+inline vtkAbstractArray* vtkArrayIteratorTemplate<long long>::GetArray() { return this->Array; }
+
+template<>
+inline vtkAbstractArray* vtkArrayIteratorTemplate<unsigned long long>::GetArray() { return this->Array; }
+
+template<>
+inline vtkAbstractArray* vtkArrayIteratorTemplate<unsigned long>::GetArray() { return this->Array; }
+
 #ifdef VTK_USE_EXTERN_TEMPLATE
 #ifndef vtkArrayIteratorTemplateInstantiate_cxx
 #ifdef _MSC_VER

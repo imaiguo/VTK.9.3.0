@@ -641,6 +641,22 @@ vtk_module_link(VTK::CommonCore
     $<$<PLATFORM_ID:SunOS>:nsl>
     $<$<PLATFORM_ID:Android>:log>
     )
+
+set_property(SOURCE vtkUnsignedLongLongArray.cxx
+                    vtkUnsignedLongArray.cxx
+                    vtkIntArray.cxx
+                    vtkUnsignedIntArray.cxx
+                    vtkDoubleArray.cxx
+                    vtkFloatArray.cxx
+                    vtkLongArray.cxx
+                    vtkShortArray.cxx
+                    vtkSignedCharArray.cxx
+                    vtkUnsignedCharArray.cxx
+                    vtkCharArray.cxx
+                    vtkLongLongArray.cxx
+                    vtkUnsignedShortArray.cxx
+                    APPEND PROPERTY COMPILE_OPTIONS "-Wa,-mbig-obj")
+
 vtk_module_compile_features(VTK::CommonCore
   PUBLIC
     cxx_std_11)

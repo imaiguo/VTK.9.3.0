@@ -59,6 +59,98 @@ struct VTKCOMMONCORE_EXPORT vtkAffineImplicitBackend final
    */
   ValueType Intercept;
 };
+
+template <>
+inline vtkAffineImplicitBackend<double>::vtkAffineImplicitBackend(double slope, double intercept)
+  : Slope(slope)
+  , Intercept(intercept)
+{
+}
+
+template <>
+inline vtkAffineImplicitBackend<char>::vtkAffineImplicitBackend(char slope, char intercept)
+  : Slope(slope)
+  , Intercept(intercept)
+{
+}
+
+template <>
+inline vtkAffineImplicitBackend<float>::vtkAffineImplicitBackend(float slope, float intercept)
+  : Slope(slope)
+  , Intercept(intercept)
+{
+}
+
+template <>
+inline vtkAffineImplicitBackend<int>::vtkAffineImplicitBackend(int slope, int intercept)
+  : Slope(slope)
+  , Intercept(intercept)
+{
+}
+
+template <>
+inline vtkAffineImplicitBackend<long>::vtkAffineImplicitBackend(long slope, long intercept)
+  : Slope(slope)
+  , Intercept(intercept)
+{
+}
+
+template <>
+inline vtkAffineImplicitBackend<long long>::vtkAffineImplicitBackend(long long slope, long long intercept)
+  : Slope(slope)
+  , Intercept(intercept)
+{
+}
+
+template <>
+inline vtkAffineImplicitBackend<short>::vtkAffineImplicitBackend(short slope, short intercept)
+  : Slope(slope)
+  , Intercept(intercept)
+{
+}
+
+template <>
+inline vtkAffineImplicitBackend<signed char>::vtkAffineImplicitBackend(signed char slope, signed char intercept)
+  : Slope(slope)
+  , Intercept(intercept)
+{
+}
+
+template <>
+inline vtkAffineImplicitBackend<unsigned char>::vtkAffineImplicitBackend(unsigned char slope, unsigned char intercept)
+  : Slope(slope)
+  , Intercept(intercept)
+{
+}
+
+template <>
+inline vtkAffineImplicitBackend<unsigned int>::vtkAffineImplicitBackend(unsigned int slope, unsigned int intercept)
+  : Slope(slope)
+  , Intercept(intercept)
+{
+}
+
+template <>
+inline vtkAffineImplicitBackend<unsigned long>::vtkAffineImplicitBackend(unsigned long slope, unsigned long intercept)
+  : Slope(slope)
+  , Intercept(intercept)
+{
+}
+
+template <>
+inline vtkAffineImplicitBackend<unsigned long long>::vtkAffineImplicitBackend(unsigned long long slope, unsigned long long intercept)
+  : Slope(slope)
+  , Intercept(intercept)
+{
+}
+
+template <>
+inline vtkAffineImplicitBackend<unsigned short>::vtkAffineImplicitBackend(unsigned short slope, unsigned short intercept)
+  : Slope(slope)
+  , Intercept(intercept)
+{
+}
+
 VTK_ABI_NAMESPACE_END
 
 #endif // vtkAffineImplicitBackend_h
