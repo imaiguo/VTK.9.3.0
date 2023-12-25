@@ -1,3 +1,4 @@
+
 # VTK - The Visualization Toolkit
 
 可以选择依赖Qt 5/6
@@ -18,4 +19,10 @@
 > cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=D:\devtools\VTK.9.3.0 -DVTK_GROUP_ENABLE_Qt=YES
 > mingw32-make.exe -j12
 >
+```
+
+## 运行环境设置
+
+```bash
+> set Path=D:\devtools\VTK.9.3.0\bin;%Path%;
 ```
