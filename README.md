@@ -1,100 +1,46 @@
-![VTK - The Visualization Toolkit][vtk-banner]
 
-Introduction
-============
+# VTK - The Visualization Toolkit
 
-VTK is an open-source software system for image processing, 3D
-graphics, volume rendering and visualization. VTK includes many
-advanced algorithms (e.g., surface reconstruction, implicit modeling,
-decimation) and rendering techniques (e.g., hardware-accelerated
-volume rendering, LOD control).
+可以选择依赖Qt5或者Qt6
 
-VTK is used by academicians for teaching and research; by government
-research institutions such as Los Alamos National Lab in the US or
-CINECA in Italy; and by many commercial firms who use VTK to build or
-extend products.
+```bash
+> -DVTK_GROUP_ENABLE_Qt=YES
+> -DVTK_QT_VERSION=5
+> -DQt5_DIR=D:\devtools\Qt\Qt5.12.12\5.12.12\mingw73_64
+> -DQt5_DIR=D:\devtools\Qt\qteverywhere.5.15.2
+```
 
-The origin of VTK is with the textbook "The Visualization Toolkit, an
-Object-Oriented Approach to 3D Graphics" originally published by
-Prentice Hall and now published by Kitware, Inc. (Third Edition ISBN
-1-930934-07-6). VTK has grown (since its initial release in 1994) to a
-world-wide user base in the commercial, academic, and research
-communities.
+## build on MSVC 
 
-Learning Resources
-==================
+### 编译Release
 
-* General information is available at the [VTK Homepage][vtk-homepage].
+```bash
+> cmd
+> "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat"
+> cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=D:\devtools\VTK.9.3.0 -DVTK_GROUP_ENABLE_Qt=YES -DVTK_QT_VERSION=5 -DQt5_DIR=D:\devtools\Qt\qteverywhere.5.15.2\lib\cmake\Qt5
+> cd build & ninja & ninja install
+>
+```
 
-* Community discussion takes place on the [VTK Discourse][vtk-discourse] forum.
+### 编译Debug
+```bash
+> cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=D:\devtools\VTK.9.3.0 -DVTK_GROUP_ENABLE_Qt=YES -DVTK_QT_VERSION=5 -DQt5_DIR=D:\devtools\Qt\qteverywhere.5.15.2\lib\cmake\Qt5
+>
+```
 
-* Commercial [support and training][kitware-support]
-  are available from [Kitware][].
+## build on mingw 
 
-* Doxygen-generated nightly reference documentation is
-  available [online][vtk-doxygen].
+```bash
+>
+> mkdir build & cd build
+> cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=D:\devtools\VTK.9.3.0 -DVTK_GROUP_ENABLE_Qt=YES
+> cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=D:\devtools\VTK.9.3.0 -DVTK_GROUP_ENABLE_Qt=YES
+> mingw32-make.exe -j12
+>
+```
 
-* There is now a large collection of [VTK Examples][vtk-examples] that
-  showcase VTK features and provide a useful learning resource.
+## 运行环境设置
 
-Reporting Bugs
-==============
-
-If you have found a bug:
-
-1. If you have a patch, please read the [CONTRIBUTING.md][vtk-contributing] document.
-
-2. Otherwise, please join the [VTK Discourse][vtk-discourse] forum and ask
-   about the expected and observed behaviors to determine if it is
-   really a bug.
-
-3. Finally, if the issue is not resolved by the above steps, open
-   an entry in the [VTK Issue Tracker][vtk-issues].
-
-Requirements
-============
-
-In general VTK tries to be as portable as possible; the specific configurations below are known to work and tested.
-
-VTK supports the following compilers:
-
-1. GCC 4.8 or newer
-2. Clang 3.3 or newer
-3. Apple Clang 5.0 (from Xcode 5.0) or newer
-4. Microsoft Visual Studio 2015 or newer
-5. Intel 14.0 or newer
-
-VTK supports the following operating systems:
-
-1. Windows Vista or newer
-2. Mac OS X 10.7 or newer
-3. Linux (ex: Ubuntu 12.04 or newer, Debian 4 or newer)
-
-Building
-========
-
-See [build.md][vtk-build] (in Documentation/dev/) for build instructions.
-
-Contributing
-============
-
-See [CONTRIBUTING.md][vtk-contributing] for instructions to contribute.
-
-License
-=======
-
-VTK is distributed under the OSI-approved BSD 3-clause License.
-See [Copyright.txt][vtk-copyright] for details.
-
-
-[kitware]: https://www.kitware.com/
-[kitware-support]: https://www.kitware.com/support/
-[vtk-banner]: vtkBanner.gif
-[vtk-build]: Documentation/dev/build.md#building-vtk
-[vtk-contributing]: CONTRIBUTING.md#contributing-to-vtk
-[vtk-copyright]: Copyright.txt
-[vtk-discourse]: https://discourse.vtk.org/
-[vtk-doxygen]: https://www.vtk.org/doc/nightly/html
-[vtk-examples]: https://kitware.github.io/vtk-examples/site/
-[vtk-homepage]: https://www.vtk.org/
-[vtk-issues]: https://gitlab.kitware.com/vtk/vtk/-/issues
+```bash
+> set Path=D:\devtools\VTK.9.3.0\bin;%Path%;
+```
